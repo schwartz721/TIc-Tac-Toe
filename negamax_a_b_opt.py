@@ -7,10 +7,10 @@ class Node():
     def __init__(self, state, pos, player):
         self.state = state
         self.state[pos] = player
-        self.value = score(self.state)
+        self.value = score(self.state, pos)
 
 
-def score(state):
+def score(state, pos):
     lines = ((0, 1, 2),
              (3, 4, 5),
              (6, 7, 8),
@@ -20,10 +20,11 @@ def score(state):
              (0, 4, 8),
              (2, 4, 6))
     for line in lines:
-        if 1 == state[line[0]] == state[line[1]] == state[line[2]]:
-            return state.count(0) + 1
-        elif -1 == state[line[0]] == state[line[1]] == state[line[2]]:
-            return -1 * state.count(0) - 1
+        if pos in line:    
+            if 1 == state[line[0]] == state[line[1]] == state[line[2]]:
+                return state.count(0) + 1
+            elif -1 == state[line[0]] == state[line[1]] == state[line[2]]:
+                return -1 * state.count(0) - 1
     if 0 not in state:
         return 0
     else:
