@@ -1,2 +1,2 @@
 # hello-world
-tradition
+print("Hello, world!")
